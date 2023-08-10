@@ -57,6 +57,8 @@ class StorageWrapper:
         return self.client.hincrby(
             self._format_key(product_id), 'in_stock', -amount)
 
+    def delete(self, product_id):
+        self.client.delete(self._format_key(product_id))
 
 class Storage(DependencyProvider):
 

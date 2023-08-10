@@ -150,3 +150,11 @@ def test_handle_order_created(
     assert b'6' == product_one[b'in_stock']
     assert b'9' == product_two[b'in_stock']
     assert b'12' == product_three[b'in_stock']
+
+def test_delete_product(service_container):
+    product_id = "prod123"
+
+    with entrypoint_hook(service_container, 'delete') as delete:
+        result = delete(product_id)
+
+    assert result is True
